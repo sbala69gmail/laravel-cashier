@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+  namespace: laravel-cashier
+  labels:
+    tier: backend
+    app: nginx
+spec:
+  ports:
+    - protocol: TCP
+      port: 1234
+      targetPort: 80
+  selector:
+    tier: backend
+    app: nginx
+  type: LoadBalancer

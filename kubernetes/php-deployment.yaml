@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+  namespace: laravel-cashier
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: php
+        tier: backend
+    spec:
+      volumes:
+      - name: dir
+        hostPath:
+          path: "/d/Projects/laravel_v7"
+      containers:
+      - name: php
+        image: sbala69/php-laravel
+        volumeMounts:
+        - name: dir
+          mountPath: /var/www
